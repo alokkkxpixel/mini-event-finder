@@ -2,7 +2,7 @@
 const express = require("express")
 const { authUserMiddleware } = require("../middleware/user.middleware")
 const { body, query } = require("express-validator")
-const { createEvent, getEvent, getAllEvent, getEventByLocation, getEventById } = require("../controller/event.controller")
+const { createEvent, getEvent, getAllEvent, getEventByLocation, getEventById, deleteEventById } = require("../controller/event.controller")
 const multer  = require('multer')
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -64,6 +64,12 @@ router.get("/:id",
   authUserMiddleware,
   getEventById
 
+)
+
+router.delete("/delete/:id",
+
+  authUserMiddleware,
+  deleteEventById
 )
 
 module.exports = router

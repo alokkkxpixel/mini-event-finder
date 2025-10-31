@@ -157,11 +157,11 @@ module.exports.deleteEventById = async (req,res) => {
   }
 
    const {id} = req.params
-
+   console.log("id",id)
    try {
      
     const file = await EventModel.findById(id)
-
+   console.log("file delete",file)
     if(!file || !file.fileId){
       return res.status(400).json({success:false , message:"File not found"})
     }
