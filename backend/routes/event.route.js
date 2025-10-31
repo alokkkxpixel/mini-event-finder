@@ -2,7 +2,7 @@
 const express = require("express")
 const { authUserMiddleware } = require("../middleware/user.middleware")
 const { body, query } = require("express-validator")
-const { createEvent, getEvent, getAllEvent, getEventByLocation } = require("../controller/event.controller")
+const { createEvent, getEvent, getAllEvent, getEventByLocation, getEventById } = require("../controller/event.controller")
 
 const router = express.Router()
 
@@ -56,6 +56,11 @@ router.get("/filter",
     authUserMiddleware,
     query("location").isString().isLength({min:2}).withMessage("location is required"),
     getEventByLocation
+)
+router.get("/:id",
+  authUserMiddleware,
+  getEventById
+
 )
 
 module.exports = router

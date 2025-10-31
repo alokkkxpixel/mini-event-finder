@@ -91,9 +91,30 @@ module.exports.getEventByLocation = async (req,res) => {
 
   } catch (err) {
       res.status(500).json({ success: false, message: error.message });
+  } 
+}
+
+module.exports.getEventById = async (req,res) => {
+  
+  const error = validationResult(req)
+
+  if(!error.isEmpty()){
+    return res.status(400).json({error:error.array()})
   }
 
-    
 
+
+  const { id} = req.params
+
+  try {
+  console.log("id",id)
     
+  const event = await EventModel.findById({_id:id}).populate("userId","fullname email")
+ 
+   res.status(201).json({success:true, event}) 
+
+  } catch (err) {
+      res.status(500).json("server error")    
+  }
+
 }
