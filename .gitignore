@@ -1,0 +1,38 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Production build output
+/dist/
+/build/
+
+# Temporary files
+.env
+.env.*.local
+.DS_Store
+Thumbs.db
+*.bak
+*.swp
+*~.nib
+*.sublime-project
+*.sublime-workspace
+.vscode/
+
+# Editor/OS specific files
+.idea/
+.cache/
+*.tgz
+*.zip
+*.rar
+
+# Vite specific
+.vite/
