@@ -1,5 +1,9 @@
 const { validationResult } = require("express-validator")
 const EventModel = require("../model/event.model")
+const { uploadFile, deleteFromImageKit } = require("../service/stroage.service")
+const { v4: uuid } = require("uuid");
+
+      const moment = require("moment");
 
 
 module.exports.createEvent = async (req,res) => {
@@ -10,12 +14,37 @@ module.exports.createEvent = async (req,res) => {
 
     try {
       const { title, description, location, date, maxParticipants, currentParticipants } = req.body
+      const file = req.file.buffer
+   
 
+      console.log("file",file , file.buffer)
+
+
+      if(!file){
+         return res.status(400).json({message:"File is required"}) 
+      }
+
+      if(!req.user || !req.user._id){
+         return res.status(404).json({success:false, message:"User not found"})
+      }
+
+      const fileUploaded = await uploadFile(file,uuid())
+
+
+// inside controller before saving
+let eventDate = req.body.date;
+if (eventDate && /^\d{2}-\d{2}-\d{4}$/.test(eventDate)) {
+  eventDate = moment(eventDate, "DD-MM-YYYY").toDate();
+}
+
+console.log(eventDate)
       const event = await EventModel.create({
         title,
         description,
         location,
-        date,
+        image:fileUploaded.url,
+        fileId:fileUploaded.fileId,
+        date:eventDate,
         maxParticipants,
         currentParticipants,
         userId: req.user.id  // comes from auth middleware
@@ -117,4 +146,40 @@ module.exports.getEventById = async (req,res) => {
       res.status(500).json("server error")    
   }
 
+}
+
+module.exports.deleteEventById = async (req,res) => {
+
+  const error = validationResult(req)
+
+  if(!error.isEmpty()){
+    return res.status(400).json({error:error.array()})
+  }
+
+   const {id} = req.params
+
+   try {
+     
+    const file = await EventModel.findById(id)
+
+    if(!file || !file.fileId){
+      return res.status(400).json({success:false , message:"File not found"})
+    }
+
+
+   if(!req.user|| !req.user._id){
+    return res.status(404).json({success:false , message:"User not found"})
+   }
+
+    await deleteFromImageKit(file.fileId)
+
+     const deleteEvent = await EventModel.findByIdAndDelete(id)
+
+      res.status(200).json({success:true , deleteEvent})
+   } catch (err) {
+    res.status(500).json("server error")
+   }
+
+
+  
 }

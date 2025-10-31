@@ -3,7 +3,9 @@ const express = require("express")
 const { authUserMiddleware } = require("../middleware/user.middleware")
 const { body, query } = require("express-validator")
 const { createEvent, getEvent, getAllEvent, getEventByLocation, getEventById } = require("../controller/event.controller")
-
+const multer  = require('multer')
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 const router = express.Router()
 
 
@@ -12,6 +14,7 @@ const router = express.Router()
 router.post(
   "/create",
   authUserMiddleware,
+  upload.single("image"),
   [
     body("title")
       .isString()
