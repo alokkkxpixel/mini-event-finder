@@ -18,14 +18,14 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-dark-bg p-4">
-      <div className="w-full max-w-md bg-light-bg rounded-xl shadow-lg p-8">
+    <div className="min-h-screen flex items-center justify-center bg-[#121212] p-4">
+      <div className="w-full max-w-md bg-zinc-900 rounded-xl shadow-lg p-8">
         <h2 className="text-3xl font-bold text-center text-white mb-8">
           Welcome Back!
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-text-secondary">
+            <label htmlFor="email" className="block text-sm font-medium text-[#A0A0A0]">
               Email Address
             </label>
             <input
@@ -41,7 +41,7 @@ const Login = () => {
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-text-secondary">
+            <label htmlFor="password" className="block text-sm font-medium text-[#A0A0A0]">
               Password
             </label>
             <input
@@ -60,13 +60,13 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:bg-purple-400 disabled:cursor-not-allowed"
+              className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#4718cb] hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:bg-purple-400 disabled:cursor-not-allowed"
             >
               {loading ? <Loader /> : 'Sign In'}
             </button>
           </div>
         </form>
-        <p className="mt-6 text-center text-sm text-text-secondary">
+        <p className="mt-6 text-center text-sm text-[#A0A0A0]">
           Not a member?{' '}
           <Link to="/register" className="font-medium text-primary hover:text-purple-400">
             Sign up now

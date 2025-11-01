@@ -45,42 +45,42 @@ const Register = () => {
   }, [password]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-dark-bg p-4">
-      <div className="w-full max-w-md bg-light-bg rounded-xl shadow-lg p-8">
+    <div className="min-h-screen flex items-center justify-center bg-[#121212] p-4">
+      <div className="w-full max-w-md bg-zinc-900 rounded-xl shadow-lg p-8">
         <h2 className="text-3xl font-bold text-center text-white mb-8">
           Create an Account
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-text-secondary">Full Name</label>
+            <label className="block text-sm font-medium text-[#A0A0A0]">Full Name</label>
             <input
               type="text"
               required
               value={fullname}
               onChange={(e) => setFullname(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 bg-dark-bg border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 bg-[#121212] border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
               placeholder="John Doe"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-text-secondary">Email Address</label>
+            <label className="block text-sm font-medium text-[#A0A0A0]">Email Address</label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 bg-dark-bg border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 bg-[#121212] border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
               placeholder="you@example.com"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-text-secondary">Password</label>
+            <label className="block text-sm font-medium text-[#A0A0A0]">Password</label>
             <input
               type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 bg-dark-bg border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 bg-[#121212] border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
               placeholder="••••••••"
             />
           </div>
@@ -95,13 +95,13 @@ const Register = () => {
             <button
               type="submit"
               disabled={loading || !allReqsMet}
-              className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:bg-purple-400 disabled:cursor-not-allowed"
+              className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-[#4718cb] hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:bg-purple-400 disabled:cursor-not-allowed"
             >
               {loading ? <Loader /> : 'Sign Up'}
             </button>
           </div>
         </form>
-        <p className="mt-6 text-center text-sm text-text-secondary">
+        <p className="mt-6 text-center text-sm text-[#A0A0A0]">
           Already a member?{' '}
           <Link to="/login" className="font-medium text-primary hover:text-purple-400">
             Sign in

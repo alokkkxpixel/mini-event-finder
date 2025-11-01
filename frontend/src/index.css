@@ -1,15 +1,36 @@
 /* src/index.css */
-
 @import "tailwindcss";
 
-@layer base {
+*body{
+  background-color: hsl(180, 100%, 50%);
+}
+/* .bg-primary {
+  background-color: #6A3DE8;
+}
+.bg-secondary {
+  background-color: #FDC448;
+}
+.bg-[#FF6B6B] {
+  background-color: #FF6B6B;
+}
+.bg-dark-bg {
+  background-color: #121212;
+}
+.bg-[#1E1E1E] {
+  background-color: #FFFFFF;
+}
+.bg-text-secondary {
+  background-color: #A0A0A0;
+} */
+
+/* @layer base {
   body {
-    @apply bg-dark-bg text-text-primary antialiased;
+    @apply bg-dark text-[#FFFFFF] antialiased;
   }
 }
 
 @layer components {
-  .input-style {
-    @apply mt-1 block w-full px-3 py-2 bg-dark-bg border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm;
-  }
-}
+
+    @apply mt-1 block w-full px-3 py-2 bg-blue-900 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm;
+
+} */

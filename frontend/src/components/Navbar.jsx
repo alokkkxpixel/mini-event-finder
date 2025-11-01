@@ -15,16 +15,16 @@ const Navbar = () => {
 
   const navLinkClass = ({ isActive }) =>
     `px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-      isActive ? 'bg-primary text-white' : 'text-text-secondary hover:bg-light-bg hover:text-white'
+      isActive ? 'bg-[#6A3DE4] text-white' : 'text-[#A0A0A0] hover:bg-[#1E1E1E] hover:text-white'
     }`;
     
   const mobileNavLinkClass = ({ isActive }) =>
     `block px-3 py-2 rounded-md text-base font-medium ${
-      isActive ? 'bg-primary text-white' : 'text-text-secondary hover:bg-light-bg hover:text-white'
+      isActive ? 'bg-[#4718cb] text-white' : 'text-[#A0A0A0] hover:bg-[#1E1E1E] hover:text-white'
     }`;
 
   return (
-    <nav className="bg-dark-bg shadow-lg">
+    <nav className="bg-[#4718cb] shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -41,7 +41,7 @@ const Navbar = () => {
                   <NavLink to="/create-event" className={navLinkClass}>Create Event</NavLink>
                   <button
                     onClick={handleLogout}
-                    className="bg-accent text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors"
+                    className="bg-[#FF6B6B] text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors"
                   >
                     Logout
                   </button>
@@ -49,7 +49,7 @@ const Navbar = () => {
               ) : (
                 <>
                   <NavLink to="/login" className={navLinkClass}>Login</NavLink>
-                  <NavLink to="/register" className="bg-primary text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-purple-700 transition-colors">Register</NavLink>
+                  <NavLink to="/register" className="bg-[#4718cb] text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-purple-700 transition-colors">Register</NavLink>
                 </>
               )}
             </div>
@@ -57,7 +57,7 @@ const Navbar = () => {
           <div className="-mr-2 flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="bg-light-bg inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
+              className="bg-[#1E1E1E] inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
             >
               <span className="sr-only">Open main menu</span>
               {isOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
@@ -76,7 +76,7 @@ const Navbar = () => {
                  <NavLink to="/create-event" className={mobileNavLinkClass} onClick={() => setIsOpen(false)}>Create Event</NavLink>
                 <button
                   onClick={() => { handleLogout(); setIsOpen(false); }}
-                  className="w-full text-left block bg-accent text-white px-3 py-2 rounded-md text-base font-medium hover:bg-red-700"
+                  className="w-full text-left block bg-[#FF6B6B] text-white px-3 py-2 rounded-md text-base font-medium hover:bg-red-700"
                 >
                   Logout
                 </button>
