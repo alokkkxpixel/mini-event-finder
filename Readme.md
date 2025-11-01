@@ -4,7 +4,7 @@ This document provides detailed information about all the available endpoints in
 
 ## Base URL
 ```
-http://localhost:3000/api
+http://localhost:4000/api
 ```
 
 ## Authentication
