@@ -73,4 +73,16 @@ async function logoutUser(req, res) {
     res.status(500).json({ message: err.message });
   }
 }
-module.exports = { registerUser , loginUser, logoutUser};
+
+
+async function getuser(req,res) {
+  
+  if(!req.user){
+    res.status(404).json({message:"User not found"})
+  }
+
+
+
+   res.json({ success: true, data: req.user });
+}
+module.exports = { registerUser , loginUser, logoutUser,getuser};
