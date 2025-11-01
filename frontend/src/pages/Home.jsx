@@ -4,6 +4,7 @@ import EventCard from '../components/EventCard';
 import Loader from '../components/Loader';
 import { Search } from 'lucide-react';
 import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const Home = () => {
   const [events, setEvents] = useState([]);
@@ -14,10 +15,10 @@ const Home = () => {
     setLoading(true);
     try {
       const endpoint = location ? `/event/filter?location=${location}` : '/event';
-      const response = await api.get(endpoint);
+      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}${endpoint}`);
       console.log("Response data " , response.data)
       if (response.data.success) {
-        setEvents(response.data.filterEvents
+        setEvents(response.data.Events
 );
       }
     } catch (error) {

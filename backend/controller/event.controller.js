@@ -73,7 +73,10 @@ module.exports.getAllEvent = async (req,res) => {
 
   console.log("allevent", allEvents)
 
-  res.status(200).json({allEvents})
+  res.status(200).json({
+     success: true,
+                count: allEvents.length,
+    Events:allEvents})
 
   } catch (err) {
       res.status(505).json({message:"server error" , err})
@@ -114,7 +117,7 @@ module.exports.getEventByLocation = async (req,res) => {
         res.status(200).json({
                 success: true,
                 count: filterEvents.length,
-               filterEvents:  filterEvents
+               Events:  filterEvents
               });
   console.log("filterevents", filterEvents)
 
