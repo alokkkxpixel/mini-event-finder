@@ -164,7 +164,7 @@ Authorization: Bearer <your_jwt_token>
 #### 2. Get All Events
 - **URL**: `/api/event`
 - **Method**: `GET`
-- **Auth Required**: Yes
+- **Auth Required**: No
 - **Success Response**:
   - **Code**: 200
   - **Content**:
@@ -191,7 +191,7 @@ Authorization: Bearer <your_jwt_token>
 #### 3. Get Event by Location
 - **URL**: `/api/event/filter?location=New York`
 - **Method**: `GET`
-- **Auth Required**: Yes
+- **Auth Required**: No
 - **Query Parameters**:
   - `location`: String (min 2 characters)
 - **Success Response**:
@@ -224,7 +224,7 @@ Authorization: Bearer <your_jwt_token>
 #### 4. Get Event by ID
 - **URL**: `/api/event/:id`
 - **Method**: `GET`
-- **Auth Required**: Yes
+- **Auth Required**: No
 - **Success Response**:
   - **Code**: 200
   - **Content**:
