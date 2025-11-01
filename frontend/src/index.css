@@ -1,0 +1,15 @@
+/* src/index.css */
+
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-text-primary antialiased;
+  }
+}
+
+@layer components {
+  .input-style {
+    @apply mt-1 block w-full px-3 py-2 bg-dark-bg border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm;
+  }
+}
