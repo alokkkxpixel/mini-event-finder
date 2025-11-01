@@ -51,17 +51,14 @@ router.post(
 
 
 router.get("/",
-    authUserMiddleware,
     getAllEvent
 )
 
 router.get("/filter",
-    authUserMiddleware,
     query("location").isString().isLength({min:2}).withMessage("location is required"),
     getEventByLocation
 )
 router.get("/:id",
-  authUserMiddleware,
   getEventById
 
 )
