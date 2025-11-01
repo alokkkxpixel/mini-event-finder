@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapPin, Calendar, Users, Trash2 } from 'lucide-react';
 import Loader from './Loader';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const EventCard = ({ event, onDelete, isDeleting }) => {
   const formattedDate = new Date(event.date).toLocaleDateString('en-US', {
@@ -8,8 +9,10 @@ const EventCard = ({ event, onDelete, isDeleting }) => {
     month: 'long',
     day: 'numeric',
   });
-
+  const navigate = useNavigate()
   return (
+
+    
     <div className="bg-zinc-900 relative rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-1 transition-transform duration-300 group">
       <div className="">
         <img src={event.image} alt={event.title} className="w-full h-48 object-cover" />
@@ -29,10 +32,14 @@ const EventCard = ({ event, onDelete, isDeleting }) => {
           </div>
         
         </div>
-          <div className=" flex item-center justify-center gap-4 bottom-0 right-10 bg-zinc-800 mt-4 text-[#84d3eede] text-xs font-medium px-1 py-2  rounded-md">
+          {/* <div className=" flex item-center justify-center gap-4 bottom-0 right-10 bg-zinc-800 mt-4 text-[#84d3eede] text-xs font-medium px-1 py-2  rounded-md">
          <h2 className=''>Current Participants: {event.currentParticipants}</h2>
          <h2> Max Participants : {event.maxParticipants} </h2>
-        </div>
+        </div> */}
+
+        <Link  className=" absolute bottom-4 right-5 flex inline-block item-center justify-end mr-4 text-[#84d3eede] bg-[#1e2122] text-sm font-medium px-2 py-2  rounded-md">
+         <button onClick={()=> navigate(`/event/:${event._id}`)}>More details</button>
+        </Link>
         {onDelete && (
            <button
              onClick={() => onDelete(event._id)}

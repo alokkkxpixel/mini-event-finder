@@ -8,6 +8,7 @@ import CreateEvent from './pages/CreateEvent';
 import MyEvents from './pages/MyEvent';
 import { useAuth } from './context/AuthContext';
 import { Toaster } from 'react-hot-toast';
+import EventDetails from './components/EventDetails';
 
 // A wrapper for routes that require authentication
 const ProtectedRoute = ({ children }) => {
@@ -32,6 +33,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           
+          <Route path="/event/:eventId" element={<EventDetails />} />
+
           {/* Protected Routes */}
           <Route 
             path="/create-event" 
