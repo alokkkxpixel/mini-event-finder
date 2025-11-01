@@ -186,3 +186,27 @@ module.exports.deleteEventById = async (req,res) => {
 
   
 }
+
+module.exports.userEvents = async (req,res) => {
+  
+ const error = validationResult(req)
+
+ if(!error.isEmpty()){
+   res.status(400).json({error:error.array()})
+ }
+ const userID = req.user._id
+
+ console.log("user id" ,userID)
+
+ try {
+  
+   const userEvents = await EventModel.find({userId:{_id:userID}})
+ 
+    console.log("users event", userEvents)
+
+    res.status(200).json({success:true , count:userEvents.length ,events:userEvents})
+ } catch (err) {
+    res.status(500).json("Server error")
+ }
+
+}

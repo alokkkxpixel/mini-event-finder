@@ -2,7 +2,7 @@
 const express = require("express")
 const { authUserMiddleware } = require("../middleware/user.middleware")
 const { body, query } = require("express-validator")
-const { createEvent, getEvent, getAllEvent, getEventByLocation, getEventById, deleteEventById } = require("../controller/event.controller")
+const { createEvent, getEvent, getAllEvent, getEventByLocation, getEventById, deleteEventById, userEvents } = require("../controller/event.controller")
 const multer  = require('multer')
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -62,7 +62,10 @@ router.get("/:id",
   getEventById
 
 )
-
+router.get("/my-events/user-events",
+  authUserMiddleware,
+  userEvents
+)
 router.delete("/delete/:id",
 
   authUserMiddleware,

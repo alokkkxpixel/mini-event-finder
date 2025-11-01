@@ -20,7 +20,7 @@ const Login = () => {
 
     try {
       // 1. Make the API call yourself
-      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/login`, { email, password });
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/login`, { email, password });
 
 
       if(response && response.data?.User){

@@ -17,7 +17,7 @@ const EventDetails = () => {
             setLoading(true);
             setError('');
             try {
-                const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/event/${eventId}`);
+                const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/event/${eventId}`);
                 if (response.data.success) {
                     setEvent(response.data.event);
                 } else {

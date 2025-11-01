@@ -10,7 +10,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = async () => {
-    await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/logout`)         ``
+    await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/logout`)         ``
     navigate('/login');
   };
 

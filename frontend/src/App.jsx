@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -9,15 +9,42 @@ import MyEvents from './pages/MyEvent';
 import { useAuth } from './context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import EventDetails from './components/EventDetails';
+import axios from 'axios';
 
 // A wrapper for routes that require authentication
-const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
-  if (!isAuthenticated) {
-    // Redirect them to the /login page, but save the current location they were
-    // trying to go to. This is a good UX practice.
+const ProtectedRoute =  ({ children }) => {
+ const { user, setUser,isAuthenticated } = useAuth();
+  const token = localStorage.getItem("token");
+
+  if (!token) {
     return <Navigate to="/login" replace />;
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/api/auth/me`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUser(response.data.data);
+        isAuthenticated(true)
+      } catch (error) {
+        console.error("Auth error:", error);
+        localStorage.removeItem("token");
+        isAuthenticated(false)
+        window.location.href = "/login";
+      }
+    };
+
+    if (!user) fetchData();
+  }, [token]); // only run on mount or token change
+
+
   return children;
 };
 

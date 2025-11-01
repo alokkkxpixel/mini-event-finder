@@ -9,7 +9,12 @@ const EventCard = ({ event, onDelete, isDeleting }) => {
     month: 'long',
     day: 'numeric',
   });
-  const navigate = useNavigate()
+ const navigate = useNavigate();
+
+  function nagivateToEvent(){
+    console.log(event._id)
+    navigate("/login")
+  }
   return (
 
     
@@ -37,9 +42,9 @@ const EventCard = ({ event, onDelete, isDeleting }) => {
          <h2> Max Participants : {event.maxParticipants} </h2>
         </div> */}
 
-        <Link  className=" absolute bottom-4 right-5 flex inline-block item-center justify-end mr-4 text-[#84d3eede] bg-[#1e2122] text-sm font-medium px-2 py-2  rounded-md">
-         <button onClick={()=> navigate(`/event/:${event._id}`)}>More details</button>
-        </Link>
+        <div  className=" absolute bottom-4 right-5 flex inline-block item-center justify-end mr-4 text-[#84d3eede] bg-[#1e2122] text-sm font-medium px-2 py-2  rounded-md">
+         <button onClick={ ()=> navigate(`/event/${event._id}`)}>More details</button>
+        </div>
         {onDelete && (
            <button
              onClick={() => onDelete(event._id)}

@@ -1,28 +1,38 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 import EventCard from '../components/EventCard';
 import Loader from '../components/Loader';
 import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const MyEvents = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState(null);
-
+ const token = localStorage.getItem("token")
+ const navigate = useNavigate()
   const fetchMyEvents = useCallback(async () => {
     setLoading(true);
     try {
       // NOTE: The backend doesn't have a dedicated "my events" endpoint.
       // We fetch all events and assume the user can only delete their own.
       // The backend's authorization on the DELETE endpoint will enforce this.
-      const response = await api.get('/event');
+      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/event/my-events/user-events`,{
+        headers: {
+              Authorization: `Bearer ${token}`,
+            },
+      });
       if (response.data.success) {
-        setEvents(response.data.data);
+        setEvents(response.data.events);
       }
     } catch (error) {
+
       toast.error('Failed to fetch events.');
+      localStorage.removeItem("token")
+         
     } finally {
+// navigate("/login") 
       setLoading(false);
     }
   }, []);
