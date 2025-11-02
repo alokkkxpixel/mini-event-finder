@@ -3,12 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 import toast from 'react-hot-toast';
 import Loader from '../components/Loader';
+import axios from 'axios';
 
 const CreateEvent = () => {
+  const token = localStorage.getItem("token")
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     location: '',
+    venue: '',
+    artist: '',
+    artistDescription: '',
     date: '',
     maxParticipants: '',
     image: null,
@@ -32,19 +37,20 @@ const CreateEvent = () => {
     for (const key in formData) {
       eventData.append(key, formData[key]);
     }
-    
-    // The backend seems to expect currentParticipants, let's add it.
+
     eventData.append('currentParticipants', 0);
 
     try {
-      const response = await api.post('/event/create', eventData, {
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/event/create`, eventData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`, 
         },
       });
-      if (response.data.success) {
+      if (response.data?._id) {
         toast.success('Event created successfully!');
         navigate('/my-events');
+        setFormData(" ")
       }
     } catch (error) {
       const message = error.response?.data?.message || 'Event creation failed.';
@@ -54,41 +60,81 @@ const CreateEvent = () => {
     }
   };
 
+  const inputStyle =
+    'mt-1 block w-full px-3 py-2 bg-[#2A2A2A] border border-gray-500 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#4718cb] focus:border-[#4718cb] sm:text-sm';
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-dark-bg p-4">
       <div className="w-full max-w-2xl bg-[#1E1E1E] rounded-xl shadow-lg p-8">
         <h2 className="text-3xl font-bold text-center text-white mb-8">
           Create a New Event
         </h2>
+
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Title + Location */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-[#A0A0A0]">Event Title</label>
-              <input type="text" name="title" required onChange={handleChange} className="mt-1 block w-full input-style" />
+              <input type="text" name="title" required onChange={handleChange} className={inputStyle} />
             </div>
-             <div>
+            <div>
               <label className="block text-sm font-medium text-[#A0A0A0]">Location</label>
-              <input type="text" name="location" required onChange={handleChange} className="mt-1 block w-full input-style" />
+              <input type="text" name="location" required onChange={handleChange} className={inputStyle} />
             </div>
           </div>
+
+          {/* Venue */}
           <div>
-            <label className="block text-sm font-medium text-[#A0A0A0]">Description</label>
-            <textarea name="description" rows="3" required onChange={handleChange} className="mt-1 block w-full input-style" />
+            <label className="block text-sm font-medium text-[#A0A0A0]">Venue</label>
+            <input type="text" name="venue" required onChange={handleChange} className={inputStyle} />
           </div>
+
+          {/* Artist + Artist Description */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-             <div>
+            <div>
+              <label className="block text-sm font-medium text-[#A0A0A0]">Artist</label>
+              <input type="text" name="artist" required onChange={handleChange} className={inputStyle} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-[#A0A0A0]">Artist Description</label>
+              <textarea name="artistDescription" rows="2" required onChange={handleChange} className={inputStyle} />
+            </div>
+          </div>
+
+          {/* Description */}
+          <div>
+            <label className="block text-sm font-medium text-[#A0A0A0]">Event Description</label>
+            <textarea name="description" rows="3" required onChange={handleChange} className={inputStyle} />
+          </div>
+
+          {/* Date + Max Participants */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
               <label className="block text-sm font-medium text-[#A0A0A0]">Date</label>
-              <input type="date" name="date" required onChange={handleChange} className="mt-1 block w-full input-style" />
+              <input type="date" name="date" required onChange={handleChange} className={inputStyle} />
             </div>
             <div>
               <label className="block text-sm font-medium text-[#A0A0A0]">Max Participants</label>
-              <input type="number" name="maxParticipants" required onChange={handleChange} className="mt-1 block w-full input-style" />
+              <input type="number" name="maxParticipants" required onChange={handleChange} className={inputStyle} />
             </div>
           </div>
-           <div>
+
+          {/* Image Upload */}
+          <div>
             <label className="block text-sm font-medium text-[#A0A0A0]">Event Image</label>
-            <input type="file" name="image" required onChange={handleChange} className="mt-1 block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#4718cb] file:text-white hover:file:bg-purple-700"/>
+            <input
+              type="file"
+              name="image"
+              required
+              onChange={handleChange}
+              className="mt-1 block w-full text-sm text-gray-300
+                file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0
+                file:text-sm file:font-semibold file:bg-[#4718cb] file:text-white
+                hover:file:bg-purple-700"
+            />
           </div>
+
+          {/* Submit */}
           <div>
             <button
               type="submit"
@@ -103,12 +149,5 @@ const CreateEvent = () => {
     </div>
   );
 };
-// Add a shared style for inputs in index.css or here as a utility class in tailwind.config
-// For now, let's use a utility class in the code itself
-const InputStyle = "mt-1 block w-full px-3 py-2 bg-dark-bg border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm";
-// In your actual code, apply this class like this: className={InputStyle}
-// However, for this example to work directly, let's define it in `index.css` or just use the classes directly.
-// In `index.css`:
-// @layer components { .input-style { @apply mt-1 block w-full px-3 py-2 bg-dark-bg border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm; }}
-// I've used `input-style` in the JSX, so be sure to add the layer to `index.css`.
+
 export default CreateEvent;

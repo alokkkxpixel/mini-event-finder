@@ -67,7 +67,7 @@ const EventDetails = () => {
 
             <div className="min-h-screen bg-black text-white flex flex-col items-center">
                 {/* Event Banner */}
-                <div className="relative w-[400px] flex justify-center items-center my-5 bg-red-400 max-h-[500px] rounded-xl overflow-hidden">
+                <div className="relative md:w-[800px] w-[400px] flex justify-center items-center my-5 bg-red-400 max-h-[500px] rounded-xl overflow-hidden">
                     <img
                         src={event.image}
                         alt={event.title}
@@ -81,14 +81,14 @@ const EventDetails = () => {
                     {/* Title & Tags */}
                     <div className="space-y-3">
                         <h1 className="text-3xl sm:text-5xl font-semibold tracking-tight">
-                            {event.title} - Smx TOUR II
+                            {event.title} 
                         </h1>
                         <div className="flex flex-wrap gap-3">
                             <span className="px-3 py-1 rounded-full border border-gray-600 text-sm">
-                                Music Concert
+                                Live Event
                             </span>
                             <span className="px-3 py-1 rounded-full border border-gray-600 text-sm">
-                                Hip-Hop / Rap
+                               {`${event.location} `}
                             </span>
                         </div>
                     </div>
@@ -121,7 +121,7 @@ const EventDetails = () => {
                     </div>
 
                     {/* CTA Button */}
-                    <button className="w-full sm:w-auto bg-primary hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-all">
+                    <button className="w-full sm:w-auto bg-[#4718cb] hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-all">
                         Book Now
                     </button>
                 </div>
@@ -147,7 +147,7 @@ const EventDetails = () => {
                     {/* Venue Section */}
                     <section className="pt-8 border-t border-gray-700">
                         <h2 className="text-2xl font-semibold mb-3">Venue</h2>
-                        <p className="text-gray-300">{event.location}</p>
+                        <p className="text-gray-300">{event.venue}</p>
                         <div className="mt-4 w-full h-56 bg-gray-800 rounded-lg flex items-center justify-center text-gray-500">
                             [Map Placeholder]
                         </div>
@@ -158,13 +158,13 @@ const EventDetails = () => {
                         <h2 className="text-2xl font-semibold mb-4">Artists</h2>
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 bg-[#1E1E1E] p-5 rounded-lg">
                             <div>
-                                <h3 className="text-xl font-bold">{event.userId.fullname}</h3>
+                                <h3 className="text-xl font-bold">{event.artist}</h3>
                                 <h5 className="text-gray-400 text-sm mb-4">
                                     Performing live at {event.location}
                                 </h5>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, inventore illo facilis non fuga illum quae reprehenderit ad obcaecati doloremque.</p>
+                                <p>{event.artistDescription}</p>
                             </div>
-                            <button className="bg-secondary hover:bg-yellow-500 text-black font-semibold py-2 px-6 rounded-lg transition-all">
+                            <button className="bg-[#4718cb] hover:bg-purple-700 text-black font-semibold py-2 px-6 rounded-lg transition-all">
                                 Book Now
                             </button>
                         </div>

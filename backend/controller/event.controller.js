@@ -13,7 +13,7 @@ module.exports.createEvent = async (req,res) => {
     }
 
     try {
-      const { title, description, location, date, maxParticipants, currentParticipants } = req.body
+      const { title, description, location, venue, artist,artistDescription, date, maxParticipants, currentParticipants } = req.body
       const file = req.file.buffer
    
 
@@ -42,6 +42,10 @@ console.log(eventDate)
         title,
         description,
         location,
+        
+        venue,
+        artist,
+        artistDescription,
         image:fileUploaded.url,
         fileId:fileUploaded.fileId,
         date:eventDate,

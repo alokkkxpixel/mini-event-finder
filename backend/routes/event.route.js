@@ -30,6 +30,14 @@ router.post(
       .isString()
       .notEmpty()
       .withMessage("Location is required"),
+     body("venue").isString().notEmpty(),
+      body("artist").isString()
+      .notEmpty()
+      .withMessage("artist name is required"),
+        body("artistDescription")
+      .isString()
+      .isLength({ min: 10 })
+      .withMessage("Artist Description must be at least 10 characters long"),
 
     body("date")
       .isISO8601()
