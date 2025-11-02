@@ -11,7 +11,7 @@ export default {
     // We are no longer using 'extend'. We are defining the entire color palette.
     colors: {
       // Your custom colors
-     primary: '#6A3DE8', #4718cb #1e2122 , #1e2122ff
+     primary: '#6A3DE8',
         secondary: '#FDC448',
         accent: '#FF6B6B',
         darkbg: '#121212',
