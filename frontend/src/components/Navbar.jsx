@@ -5,13 +5,19 @@ import { Menu, X } from 'lucide-react';
 import axios from 'axios';
 
 const Navbar = () => {
-  const { isAuthenticated, logout ,loading} = useAuth();
+  const { isAuthenticated,setUser, logout ,loading} = useAuth();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = async () => {
-    await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/logout`)         ``
+   const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/auth/logout`)     
+   
+   if(res && res.status === 200){
+    localStorage.removeItem("token")
+    setUser(null)
+    
     navigate('/login');
+   }
   };
 
   const navLinkClass = ({ isActive }) =>

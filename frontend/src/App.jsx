@@ -32,11 +32,11 @@ const ProtectedRoute =  ({ children }) => {
           }
         );
         setUser(response.data.data);
-        isAuthenticated(true)
+        isAuthenticated === true
       } catch (error) {
         console.error("Auth error:", error);
         localStorage.removeItem("token");
-        isAuthenticated(false)
+        isAuthenticated === false
         window.location.href = "/login";
       }
     };

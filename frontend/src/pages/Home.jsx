@@ -5,11 +5,13 @@ import Loader from '../components/Loader';
 import { Search } from 'lucide-react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 const Home = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+//  const {user ,setUser,isAuthenticated} = useAuth()
 
   const fetchEvents = useCallback(async (location = '') => {
     setLoading(true);
@@ -30,8 +32,9 @@ const Home = () => {
 
   useEffect(() => {
     fetchEvents();
-  }, [fetchEvents]);
+  }, [fetchEvents ]);
 
+ 
   const handleSearch = (e) => {
     e.preventDefault();
     fetchEvents(searchTerm);
