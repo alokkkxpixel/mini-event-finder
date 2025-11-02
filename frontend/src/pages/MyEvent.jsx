@@ -61,7 +61,7 @@ const MyEvents = () => {
   };
 
   return (
-    <div className="min-h-screen bg-dark-bg text-white">
+    <div className="min-h-screen bg-[#1e2122ff] text-white">
        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-8">
             <h1 className="text-4xl font-bold">My Events</h1>

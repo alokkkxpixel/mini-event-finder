@@ -64,7 +64,7 @@ const CreateEvent = () => {
     'mt-1 block w-full px-3 py-2 bg-[#2A2A2A] border border-gray-500 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#4718cb] focus:border-[#4718cb] sm:text-sm';
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-dark-bg p-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#1e2122ff] p-4">
       <div className="w-full max-w-2xl bg-[#1E1E1E] rounded-xl shadow-lg p-8">
         <h2 className="text-3xl font-bold text-center text-white mb-8">
           Create a New Event
