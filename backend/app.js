@@ -8,7 +8,7 @@ const app = express();
 app.use(cookieParser())
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://myfrontend.vercel.app"], // or your frontend URL
+    origin: ["http://localhost:5173", "https://eventfinder-omega.vercel.app/"], // or your frontend URL
     credentials: true, // ✅ allow cookies
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
