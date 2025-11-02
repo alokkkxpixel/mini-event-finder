@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Loader from '../components/Loader';
 import { CheckCircle, XCircle } from 'lucide-react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const PasswordRequirement = ({ meets, text }) => (
   <li className={`flex items-center ${meets ? 'text-green-400' : 'text-red-400'}`}>
@@ -10,15 +12,15 @@ const PasswordRequirement = ({ meets, text }) => (
     {text}
   </li>
 );
-
+ 
 const Register = () => {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const { register, loading } = useAuth();
+  const { register, loading ,setLoading} = useAuth();
   const navigate = useNavigate();
-
+  const {user , setUser } = useAuth()
   const passwordReqs = {
     length: password.length >= 8,
     uppercase: /[A-Z]/.test(password),
@@ -26,17 +28,36 @@ const Register = () => {
   };
   const allReqsMet = Object.values(passwordReqs).every(Boolean);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!allReqsMet) {
-      alert("Password does not meet requirements.");
-      return;
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+
+  if (!allReqsMet) {
+    toast.error("Password does not meet requirements.");
+    setLoading(false);
+    return;
+  }
+
+  try {
+    const response = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/api/auth/register`,
+      { fullname, email, password }
+    );
+
+    if (response.data.message) {
+      setUser(response.data.data);
+      toast.success("User registered successfully!");
+      navigate("/login"); // ✅ redirect right after success
     }
-    const success = await register(fullname, email, password);
-    if (success) {
-      navigate('/login');
-    }
-  };
+  } catch (error) {
+    console.error(error);
+    toast.error(error.response?.data?.message || "Registration failed");
+  } finally {
+    setLoading(false);
+  }
+};
+
+
   
   useEffect(() => {
     if (password) {
