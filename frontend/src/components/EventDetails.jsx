@@ -40,7 +40,7 @@ const EventDetails = () => {
 
     if (loading) {
         return (
-            <div className="h-screen flex items-center justify-center">
+            <div className="h-screen bg-black  flex items-center justify-center">
                 <Loader size="h-16 w-16" />
             </div>
         );

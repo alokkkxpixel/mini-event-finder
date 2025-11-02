@@ -47,9 +47,9 @@ const CreateEvent = () => {
             Authorization: `Bearer ${token}`, 
         },
       });
-      if (response.data?._id) {
+      if (response.data.message) {
         toast.success('Event created successfully!');
-        navigate('/my-events');
+        navigate('/');
         setFormData(" ")
       }
     } catch (error) {
