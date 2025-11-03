@@ -25,7 +25,7 @@ const Login = () => {
 
       if(response && response.data?.User){
 
-        console.log("user login success",response.data?.User)
+        // console.log("user login success",response.data?.User)
         localStorage.setItem("token", response.data.token)
         setUser(response.data?.User)
       }

@@ -18,7 +18,7 @@ const Home = () => {
     try {
       const endpoint = location ? `/event/filter?location=${location}` : '/event';
       const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api${endpoint}`);
-      console.log("Response data " , response.data)
+      // console.log("Response data " , response.data)
       if (response.data.success) {
         setEvents(response.data.Events
 );

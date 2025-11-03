@@ -12,7 +12,7 @@ const EventCard = ({ event, onDelete, isDeleting }) => {
  const navigate = useNavigate();
 
   function nagivateToEvent(){
-    console.log(event._id)
+    // console.log(event._id)
     navigate("/login")
   }
   return (
