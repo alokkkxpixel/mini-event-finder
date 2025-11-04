@@ -46,7 +46,7 @@ const Home = () => {
       <div className="relative text-center bg-[#1e2122] py-20 px-4 sm:px-6 lg:px-8">
          <div 
             className="absolute inset-0 bg-cover bg-center opacity-10" 
-            style={{backgroundImage: `url("${imgUrl}")`}}>
+            style={{backgroundImage: `url("/bg.jpg")`}}>
         </div>
         <div className="relative">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight">
