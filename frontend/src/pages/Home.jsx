@@ -45,14 +45,14 @@ const Home = () => {
       {/* Hero Section */}
       <div className="relative text-center bg-[#1e2122] py-20 px-4 sm:px-6 lg:px-8">
          <div 
-            className="absolute inset-0 bg-cover bg-center opacity-10" 
+            className="absolute inset-0 bg-cover bg-center opacity-30" 
             style={{backgroundImage: `url("${imgUrl}")`}}>
         </div>
         <div className="relative">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight">
                 Find Your Next <span className="text-primary">Experience</span>
             </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-lg text-[#A0A0A0]">
+            <p className="mt-4 max-w-2xl mx-auto text-lg text-[#ffffff]">
                 Discover events, concerts, and gatherings happening near you.
             </p>
             <form onSubmit={handleSearch} className="mt-8 max-w-xl mx-auto flex items-center">
@@ -61,7 +61,7 @@ const Home = () => {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search by location (e.g., New York)"
-                    className="w-full px-4 py-3 text-white bg-dark-bg border border-gray-600 rounded-l-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 text-white bg-[#1e2122] border border-gray-600 rounded-l-md focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 <button
                     type="submit"
