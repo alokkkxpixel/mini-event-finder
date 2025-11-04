@@ -46,7 +46,7 @@ const Home = () => {
       <div className="relative text-center bg-[#1e2122] py-20 px-4 sm:px-6 lg:px-8">
          <div 
             className="absolute inset-0 bg-cover bg-center opacity-10" 
-            style={{backgroundImage: "url('https://i.pinimg.com/736x/1b/74/e2/1b74e2cf8e28d6d18d7e339cf862bee7.jpg')"}}>
+            style={{backgroundImage: "url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.inquirer.com%2Farts%2Ftravis-scott-wells-fargo-utopia-circus-maximus-tour-review-20231211.html&psig=AOvVaw1B7tXOLUebSVVHR-Qe2vhW&ust=1762344904268000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKC5h8a82JADFQAAAAAdAAAAABAX')"}}>
         </div>
         <div className="relative">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight">
