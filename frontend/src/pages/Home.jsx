@@ -6,7 +6,7 @@ import { Search } from 'lucide-react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
-import imgUrl from './bg.jpg'
+import imgUrl from '../assets/bg.jpg'
 const Home = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -46,7 +46,7 @@ const Home = () => {
       <div className="relative text-center bg-[#1e2122] py-20 px-4 sm:px-6 lg:px-8">
          <div 
             className="absolute inset-0 bg-cover bg-center opacity-10" 
-            style={{backgroundImage: `url("/bg.jpg")`}}>
+            style={{backgroundImage: `url("${imgUrl}")`}}>
         </div>
         <div className="relative">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight">
